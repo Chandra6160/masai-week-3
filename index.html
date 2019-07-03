@@ -31,18 +31,26 @@
       margin-left: 400px;
       font-size: 30px;
     }
+    #total11
+    {
+      margin-top: -20px;
+      font-size: 20px;
+    }
+
 
     </style>
   </head>
   <body background='/home/chandrashekhar/repos/week3/masai-week-3/resources/s.jpg'>
     <div class="masai">
       <img src="/home/chandrashekhar/repos/week3/masai-week-3/resources/nandhana-palace.webp" alt="" class="logo">
-
-
     </div>
     <div id="mm">
       <botton style="margin-left: 80px;font-size: 29px;background-color: chocolate;" id="menu">Menu</button>
       </div>
+      <label for="discount" style="margin-left: 790px;margin-top: 10px;font-size: 25px;">Discount(%):</label>
+      <input id="discountInput" type="text" name="discount" value="" >
+      <label for="tax" style="margin-left: 790px;margin-top: 10px;font-size: 25px;">Tax(%) : </label>
+      <input id="taxInput" type="text" name="tax" value="" style="margin-left: 57px;">
       <div class="">
         <select  id="select" size="5" style="width: auto;margin-left: 80px;">
           <option value="70">Ghee Rice---------------Rs.70</option>
@@ -51,35 +59,30 @@
           <option value="60">Butter Roti per pc------Rs.60</option>
           <option value="90">Rumali Roti per pc------Rs.80</option>
         </select>
-
       </div>
       <div class="orderedItems" style="margin-left: 80px;font-size: 25px;">
         <p >Selected Items</p>
-
       </div>
       <div class="curdRice" style="margin-left: 80px;font-size: 20px;">
-
       </div>
       <div class="roti" style="margin-left: 80px;font-size: 20px;">
-
       </div>
       <div class="roti1" style="margin-left: 80px;font-size: 20px;">
-
       </div>
       <div class="roti2" style="margin-left: 80px;font-size: 20px;">
-
       </div>
       <div class="roti2" style="margin-left: 80px;font-size: 40px;">
-
       </div>
       <div id="total" style="margin-left: 80px;font-size: 40px;">
-        <p id="total11" style="margin-top: 8px;"></p>
-
+        <b id="total11" style="margin-top: 8px;"></b  >
       </div>
-
+      <div class="totalBill">
+        <h3 id="tB" style="margin-left: 800px;margin-top: -252.567px;"></h3>
+      </div>
   </body>
   <script>
-    var count=0,discount=0.25,tax=0.05,sum=0,sum1=0,sum2=0,sum3=0,sum4=0,total=0;
+    var count=0,sum=0,sum1=0,sum2=0,sum3=0,sum4=0,total=0;
+    var price=0,discountedPrice=0,price1=0,discountedPrice1=0,price2=0,discountedPrice2=0,price3=0,discountedPrice3=0,price4=0,discountedPrice4=0
     var bodyElem = document.querySelector('body')
     function selectItems()
     {
@@ -91,106 +94,90 @@
       var selectedItems3 = document.querySelector('.roti1')
       var selectedItems4 = document.querySelector('.roti2')
       document.getElementById('total11').innerHTML = "Total items selected "+count
+      var discount=(Number(document.getElementById('discountInput').value)/100)
+      var tax=(Number(document.getElementById('taxInput').value)/100)
+      var arr=[]
       switch (select)
       {
-
         case '70':
         {
           sum++
-
+          price = 70 * sum
+          discountedPrice = (price - (discount*price) + (tax*price))
           var table=document.createElement('p')
-          table.textContent = "Ghee rice " + "* " + sum
+          table.textContent = "Ghee rice " + "* " + sum +"="+discountedPrice+" Rs"
           table.style.fontSize='20px'
           selectedItems.appendChild(table)
-
-          var price = 70 * sum
-          var discountedPrice = price - (discount*price)
-          total = discountedPrice
           var list = document.querySelector(".orderedItems");
           list.removeChild(list.childNodes[2]);
-
           break;
         }
         case "80":
         {
           sum1++
-
+          price1 = 80 * sum1
+          discountedPrice1 = (price1 - (discount*price1) + (tax*price1))
           var table1=document.createElement('p')
-          table1.textContent = "Curd rice " + "* " + sum1
+          table1.textContent = "Curd rice " + "* " + sum1+"="+discountedPrice1+" Rs"
           selectedItems1.appendChild(table1)
-
-          var price1 = 80 * sum1
-          var discountedPrice1 = price1 - (discount*price1)
-          total = discountedPrice1
           var list1 = document.querySelector(".curdRice");
           list1.removeChild(list1.childNodes[0]);
           break;
-
         }
         case '50':
         {
           sum2++
-
+          price2 = 50 * sum2
+          discountedPrice2 = (price2 - (discount*price2) + (tax*price2))
           var table2=document.createElement('p')
-          table2.textContent = "Roti per pc " + "* " + sum2
+          table2.textContent = "Roti per pc " + "* " + sum2+"="+discountedPrice2+" Rs"
           selectedItems2.appendChild(table2)
-
-          var price2 = 50 * sum2
-          var discountedPrice2 = price2 - (discount*price2)
-          total = discountedPrice2
           var list2 = document.querySelector(".roti");
           list2.removeChild(list2.childNodes[0]);
           break;
         }
-
         case '60':
         {
           sum3++
-
+          price3 = 60 * sum3
+          discountedPrice3 = (price3 - (discount*price3) + (tax*price3))
           var table3=document.createElement('p')
-          table3.textContent = "Butter Roti per pc " + "* " + sum3
+          table3.textContent = "Butter Roti per pc " + "* " + sum3+"="+discountedPrice3+" Rs"
           selectedItems3.appendChild(table3)
-
-          var price3 = 60 * sum3
-          var discountedPrice3 = price3 - (discount*price3)
-          total = discountedPrice3
           var list3 = document.querySelector(".roti1");
           list3.removeChild(list3.childNodes[0]);
           break;
         }
-
         case '90':
         {
           sum4++
-
+          price4 = 90 * sum4
+          discountedPrice4 = (price4 - (discount*price4) + (tax*price4))
+          document.getElementById('tB').innerHTML="Total Bill : "+discountedPrice4
           var table4=document.createElement('p')
-          table4.textContent = "Rumali Roti per pc " + "* " + sum4
+          table4.textContent = "Rumali Roti per pc " + "* " + sum4+"="+discountedPrice4+" Rs"
           selectedItems4.appendChild(table4)
-
-          var price4 = 90 * sum4
-          var discountedPrice4 = price4 - (discount*price4)
-          total = discountedPrice4
           var list4 = document.querySelector(".roti2");
           list4.removeChild(list4.childNodes[0]);
           break;
         }
-
-
-
         break;
         default:
-
       }
-
-
-
+      arr.push(discountedPrice)
+      arr.push(discountedPrice1)
+      arr.push(discountedPrice2)
+      arr.push(discountedPrice3)
+      arr.push(discountedPrice4)
+      var sumItmes = 0
+      for(var i=0;i<arr.length;i++)
+      {
+        sumItmes=sumItmes+arr[i]
+      }
+      document.getElementById('tB').innerHTML="Total Bill : "+Math.round(sumItmes)+" Rs"
     }
     var btn = document.getElementById('select')
     btn.addEventListener('click',selectItems)
-
-
-
-
 
   </script>
 
